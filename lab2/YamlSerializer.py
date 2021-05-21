@@ -1,5 +1,5 @@
 import yaml
-from serializers.Converter import from_dict, to_dict
+from Converter import to_dict, from_dict
 
 class YamlSerializer:
     def dumps(self, object):
