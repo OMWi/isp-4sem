@@ -1,12 +1,14 @@
 import yaml
 from Converter import to_dict, from_dict
 
+#not working
+
 class YamlSerializer:
     def dumps(self, object):
         return yaml.dumps(to_dict(object))
 
     def dump(self, object, filePath):
-        with open(filePath, "wb") as file:
+        with open(filePath, "w") as file:
             yaml.dump(to_dict(object), file)
     
     def loads(self, string):
@@ -14,5 +16,5 @@ class YamlSerializer:
 
 
     def load(self, filePath):
-        with open(filePath, "rb") as file:
+        with open(filePath, "r") as file:
             return from_dict(yaml.load(file))

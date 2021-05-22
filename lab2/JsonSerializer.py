@@ -6,7 +6,7 @@ class JsonSerializer:
         return json.dumps(to_dict(object))
 
     def dump(self, object, filePath):
-        with open(filePath, "wb") as file:
+        with open(filePath, "w") as file:
             json.dump(to_dict(object), file)
     
     def loads(self, string):
@@ -14,5 +14,5 @@ class JsonSerializer:
 
 
     def load(self, filePath):
-        with open(filePath, "rb") as file:
+        with open(filePath, "r") as file:
             return from_dict(json.load(file))
