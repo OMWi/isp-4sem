@@ -5,7 +5,7 @@ from PickleSerializer import PickleSerializer
 
 class Factory():
     def __init__(self):
-        self.serializers = ("json", "pickle", "toml", "yaml")
+        self.serializers = ("json", "pickle", "toml", "yml")
 
     def createSerializer(self, format : str):
         if format not in self.serializers:
@@ -15,7 +15,7 @@ class Factory():
                 return JsonSerializer()
             if format == "pickle":
                 return PickleSerializer()
-            if format == "yaml":
+            if format == "yml":
                 return YamlSerializer()
             if format == "toml":
                 return TomlSerializer()

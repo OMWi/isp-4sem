@@ -6,13 +6,13 @@ from Converter import *
 
 
 
-def someFunc(a):
-    return a**3
+def someFunc():
+    return glob**3
 
 def anotherFunc():
     print("!dlrow olleh")
 
-glob = 4
+glob = 5
 
 class UselessClass:
     uselessVariable = 1
@@ -35,28 +35,23 @@ def main():
     }
     list = [1, 2, "something"]
     set = {1, 2, "3"}
-    tuple = ()
+    tuple = (1, (3, 2))
     class_object = UselessClass(4)
-    print(dir(class_object))
+
+    fileName = "test_serialization.json"
+    func = lambda x : print(x**2)
+
+    my_serializer = JsonSerializer()
+    res = my_serializer.dumps(UselessClass)
+    loaded = my_serializer.loads(res)
+    print(loaded)
+    print(UselessClass)
+    print(loaded == UselessClass)
+
+    #loaded = my_serializer.load(fileName)
+    # print(loaded)
 
 
-
-    print("simple_dict:\n", to_dict(simple_dict))
-    print("complex_dict\n", to_dict(complex_dict))
-    print("list:\n", to_dict(list))
-    print("class:\n", to_dict(UselessClass))
-    print("class_object:\n", to_dict(class_object))
-    print("func:\n", to_dict(someFunc))
-    print("glob:\n", glob)
-    print("\nchecking builtin json\n")
-    my_json = JsonSerializer()
-
-    #res = json.dumps(class_object)
-    #print(res)
-    res = my_json.dumps(someFunc)
-    print(res)
-    new = my_json.loads(res)
-    new()
 
 
 
