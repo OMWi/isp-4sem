@@ -1,20 +1,20 @@
-import toml
+import pytomlpp
 from Converter import to_dict, from_dict
 
-#not working
 
 class TomlSerializer:
-    def dumps(self, object):
-        return toml.dumps(object)
 
-    def dump(self, object, filePath):
-        with open(filePath, "w") as file:
-            toml.dump(object, file)
-    
-    def loads(self, string):
-        return toml.loads(string)
+    def dumps(self, obj: object) -> str:
+        return pytomlpp.dumps(to_dict(obj))
 
+    def dump(self, obj: object, fp: str):
+        with open(fp, "w") as file:
+            file.write(self.dumps(obj))
 
-    def load(self, filePath):
-        with open(filePath, "r") as file:
-            return toml.load(file)
+    def loads(self, data: str) -> dict or list:
+
+        return from_dict(pytomlpp.loads(data))
+
+    def load(self, fp) -> dict or list:
+        with open(fp, "r") as file:
+            return self.loads(file.read())

@@ -1,10 +1,6 @@
 import inspect
 from types import FunctionType, LambdaType, CodeType, CellType
-'''
-import opcode
-import dis
-import codecs
-'''
+
 def to_dict(object):
     if type(object) in (int, float, str, bool, type(None)):
         return object
@@ -25,8 +21,6 @@ def to_dict(object):
 
     if isinstance(object, dict):
         return dict_to_dict(object)
-    
-    
 
     if hasattr(object, "__dict__"):
         return object_to_dict(object)
@@ -71,30 +65,6 @@ def class_to_dict(object):
         value = getattr(object, prop)
         res[prop] = to_dict(value)
     return res
-'''
-STORE_GLOBAL = opcode.opmap['STORE_GLOBAL']
-DELETE_GLOBAL = opcode.opmap['DELETE_GLOBAL']
-LOAD_GLOBAL = opcode.opmap['LOAD_GLOBAL']
-GLOBAL_OPS = (STORE_GLOBAL, DELETE_GLOBAL, LOAD_GLOBAL)
-         
-def get_global_ops(code):
-    for instr in dis.get_instructions(code):
-        if instr.opcode in GLOBAL_OPS:
-            yield instr.arg
-
-def func_to_dict(object):
-    result = {"__func__": object.__name__}
-    globals_keys = {object.__code__.co_names[arg] for arg in get_global_ops(object.__code__)}
-    f_globals = {key: object.__globals__[key] for key in globals_keys if key in object.__globals__}
-    for c in object.__code__.__dir__():
-        if c.startswith("co_"):
-            attr = getattr(object.__code__, c)
-            if isinstance(attr, bytes):
-                attr = codecs.decode(attr, 'unicode_escape')
-            result[c] = to_dict(attr)
-    result["globals"] = f_globals
-    return result
-'''
 
 def list_to_dict(object):
     res = []

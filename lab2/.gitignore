@@ -3,5 +3,5 @@
 *.pickle
 *.toml
 .vscode
-.pycache
-.txt
+*pycache*
+*.txt

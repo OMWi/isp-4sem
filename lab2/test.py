@@ -19,6 +19,8 @@ def list_test(format : str):
     loaded = serializer.load(fileName)
     assert list == loaded
 
+# list_test("toml")
+
 def set_test(format : str):
     serializer = factory.createSerializer(format)
     fileName = "test." + format
