@@ -1,3 +1,3 @@
-#ISP-4sem labs
+# ISP-4sem labs
 
-##lab3 https://github.com/OMWi/quokka-bot
+ lab3 https://github.com/OMWi/quokka-bot
