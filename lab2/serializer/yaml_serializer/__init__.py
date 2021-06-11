@@ -1,6 +1,6 @@
 from .yaml_lexer import lex
 from .yaml_parser import parse
-from ..Converter import *
+from ..converter import *
 import inspect
 
 class YamlSerializer:

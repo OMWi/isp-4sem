@@ -1,4 +1,4 @@
-from ..Converter import *
+from ..converter import *
 
 def parse_array(tokens, flag=''):
     array = []

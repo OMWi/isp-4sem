@@ -1,6 +1,6 @@
 from .json_lexer import lex
 from .json_parser import parse
-from ..Converter import *
+from ..converter import *
 import inspect
 
 class JsonSerializer:

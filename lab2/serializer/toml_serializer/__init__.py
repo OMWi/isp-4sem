@@ -1,6 +1,6 @@
 from .toml_lexer import lex
 from .toml_parser import parse
-from ..Converter import *
+from ..converter import *
 import inspect
 
 class TomlSerializer:

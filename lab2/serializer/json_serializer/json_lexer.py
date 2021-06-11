@@ -107,7 +107,7 @@ def lex(string):
 
         if string[0] in [' ', '\t', '\b', '\n', '\r']:
             string = string[1:]
-        elif string[0] in [',', ':', '(', ')', '{', '}'] or string[0] in ['D', 'T', 'S']:
+        elif string[0] in [',', ':', '[', ']', '{', '}'] or string[0] in ['D', 'T', 'S']:
             tokens.append(string[0])
             string = string[1:]
         else:
