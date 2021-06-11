@@ -2,6 +2,7 @@ from flask import Flask, request
 import telegram
 from telegram import ReplyKeyboardMarkup
 import logging
+import asyncio
 
 from models import db, User, Account, Word, Meaning
 from config import TOKEN, URL, DB_DATABASE, DB_HOST, DB_PASSWORD, DB_USERNAME
@@ -20,6 +21,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db.init_app(app)
 with app.app_context():
     db.create_all()
+loop = asyncio.new_event_loop()
 
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
@@ -159,6 +161,14 @@ def set_webhook():
         return "webhook setup successful"
     else:
         return "webhook setup failed"
+
+async def hello():
+    print("hello")
+
+@app.route("/pepega")
+def pepega():
+    loop.run_until_complete(hello)
+    return "pepega executed"
 
 @app.route('/')
 def index():
