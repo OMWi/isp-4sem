@@ -1,28 +1,36 @@
-import db_handler
-from models import *
+from db_commands import insert_user
+from flask import Flask
+
+from models import db, Account, User, account_user, Word, Meaning
 from config import *
+import admin_commands
 
-conn = db_handler.create_connection(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE)
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://{}:{}@{}/{}".format(DB_USERNAME, DB_PASSWORD, DB_HOST, DB_DATABASE)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+db.init_app(app)
+with app.app_context():
+    db.create_all()
 
-while True:
-    '''
-    word_en = input()
-    word_type = input()
-    newWord = Word(word_en, word_type)
-    db_handler.insert_word(conn, newWord)
-    print("{} inserted".format(word_en))
-    '''
-    '''
-    word_en = input("word_en:")    
-    meaning = input("meaning:")
-    word_id = db_handler.find_word_id(conn, "admit")
-    newMeaning = Meaning(meaning, word_id)
-    db_handler.insert_meaning(conn, newMeaning)
-    print("meaning {} inserted".format(meaning))
-    '''
-    '''
-    res = db_handler.get_random_words(conn, 4)
-    print(res)
-    '''
 
-    break
+
+@app.route('/')
+def index():
+    return "Homepage"
+
+@app.route('/u')
+def test_user():
+    word_id = 65
+    meanings = Meaning.query.filter_by(word_id=word_id).all()
+    print(meanings)
+    str = "Word\n"
+    i = 1
+    for elem in meanings:
+        str += "{}. {}".format(i, elem.meaning)
+        i += 1
+    print(str)
+    
+    return "completed"
+
+if __name__ == "__main__":
+    app.run(debug=True)

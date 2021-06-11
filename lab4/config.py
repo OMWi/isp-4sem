@@ -1,4 +1,4 @@
-TOKEN = "1895343883:AAHlZsAFC1nQykS--ukjNozP0oTJWcNA7gs"
+TOKEN = "1895343883:AAGBNZPqhTYFLLPp--WM1G1IdKpJUlmzGmw"
 BOT_USERNAME = "SirQuokkaBot"
 URL = "https://sir-quokka-bot.herokuapp.com/"
 TG_API = "https://api.telegram.org/bot"
