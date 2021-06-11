@@ -22,6 +22,12 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
+
+async def async_func(bot, user_id):
+    admins = User.query.filter_by(role='admin').all()
+    for admin in admins:
+        bot.send_message(chat_id=admin.user_id, text="User <{}> started registration".format(user_id))
 
 
 @app.route('/{}'.format(TOKEN), methods=['POST'])
@@ -82,6 +88,7 @@ def respond():
     elif text == "/login":
         login_1(bot, chat_id, user_id)
     elif text == "/register":
+        loop.run_until_complete(async_func(bot, user_id))
         registrate_1(bot, chat_id, user_id)
     elif text == "/logout":
         logout(bot, chat_id, user_id)
@@ -161,14 +168,6 @@ def set_webhook():
         return "webhook setup successful"
     else:
         return "webhook setup failed"
-
-async def hello():
-    print("hello")
-
-@app.route("/pepega")
-def pepega():
-    loop.run_until_complete(hello)
-    return "pepega executed"
 
 @app.route('/')
 def index():
