@@ -1,15 +1,15 @@
 import pytest
 from yaml import serialize
-from JsonSerializer import JsonSerializer
-from PickleSerializer import PickleSerializer
-from YamlSerializer import YamlSerializer
-from TomlSerializer import TomlSerializer
+from json_serializer import JsonSerializer
+from pickle_serializer import PickleSerializer
+from yaml_serializer import YamlSerializer
+from toml_serializer import TomlSerializer
 from Factory import Factory
 
 factory = Factory()
     
 def list_test(format : str):
-    serializer = factory.createSerializer(format)
+    serializer = factory.create_serializer(format)
     fileName = "test." + format
     list = [[1, 2], "string 1", 0.45]
     if format != "yml":

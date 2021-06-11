@@ -7,7 +7,7 @@ class Factory():
     def __init__(self):
         self.serializers = ("json", "pickle", "toml", "yml")
 
-    def createSerializer(self, format : str):
+    def create_serializer(self, format : str):
         if format not in self.serializers:
             raise ValueError("{} is not supported".format(format))
         else:
